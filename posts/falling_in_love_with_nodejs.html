@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+                
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <meta name="author" content="Jeremy Osborne">
+        <link href="/css/style.css" rel="stylesheet">
+        <link href="/rss.xml" title="i like to talk" rel="alternate" type="application/rss+xml">
+        <title>Falling (back) in love with Node.js</title>
+            <script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-33545821-1']);
+_gaq.push(['_setDomainName', 'jeremyosborne.com']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+        </script>
+</head>
+    <body>
+                <noscript>
+            <div class="warning">
+This blog works better with JavaScript enabled.
+            </div>
+        </noscript>
+
+                
+        <header>
+            <h1><a href="/">i like to talk</a></h1>
+        </header>
+
+        <div id="main-content">
+            <section class="post-single">
+                <nav class="inter-post-nav">
+                    
+                    <a href="/posts/javascript_and_videogames.html" class="previous">JavaScript and Video Games</a>
+                    
+                    
+                    <a href="/posts/organic_design_and_video_games.html" class="next">Organic Design and Video Games</a>
+                    
+                </nav>
+                <article class="post">
+                    <header>
+                        <h1>Falling (back) in love with Node.js</h1>
+                        <h2>by Jeremy Osborne, 2012.10.07 13:00:00</h2>
+                    </header>
+                    <section>
+                        <p>A few years ago when I first found out about <a href="http://nodejs.org" target="_blank">Node.js</a> (hereafter referred to as node), I thought it was the absolute coolest thing ever. &quot;Cool!&quot; I thought, I can dump Django and PHP and my reliance on those server side engineers. <strong>&lt;ignorance class=&#39;bliss&#39;&gt;</strong>I can do it all myself!<strong>&lt;/ignorance&gt;</strong> Honeymoons, thankfully, don&#39;t last. My first impression of node quickly turned into despair at having to code everything myself that I was used to getting for free in other web frameworks. Whether those thoughts were accurate at the time, they were my thoughts, and lacking a node therapy/support group I moved on. I never forgot about node, keeping a little birdhouse in my soul for it, but I didn&#39;t really touch it other than to experiment with stuff here and there.</p>
+<p>Over the last couple of months, I&#39;ve bumped up against node, again, and I find myself falling in love with it, again. Like mushy love, like I want to actually tell people about it, and be proud of the oft-maligned language of JavaScript. I&#39;ve been told all of my programming life that Python and Ruby programmers are the happiest, and being a lover of Python I can understand the sentiment. But does JavaScript have a chance to be a &quot;full stack&quot; language? With how far node has come along, I&#39;m starting to think it really does.</p>
+<p>Love gets better when shared, like a great movie, or a bottle of port, or a fine cigar (only when you have an extra one to share). Remember that my first experience of node was that I loved it, but there was just too much I had to code on my own that I thought should have been baked in. Below might be an odd list to some, but I&#39;d like to point out the various features that have me coming back into the node fold. Some of them are insanely simple, but they all represent things that I&#39;ve often said, &quot;WTF? Other languages get this yet I can&#39;t just-have-this in node?&quot;</p>
+<hr>
+<p>The <strong><a href="http://nodejs.org/download/" target="_blank">node installers</a></strong> make me insansely happy, especially on Windows. I know computers are dumb. I&#39;ve experienced the bugs I write myself and the bugs others write all to regularly. But if there&#39;s an installer associated with an application: (1) my psyche is convinced there is a simple way to uninstall it; (2) I don&#39;t have to modify my PATH variable by hand. And now, praise be to the computer pantheon, node is painless to get up and running everywhere, only resorting to installing from source when absolutely necessary.</p>
+<hr>
+<p>The Node Version Manager, or <strong><a href="https://github.com/creationix/nvm" target="_blank">nvm</a></strong>, saved my butt a couple of weeks ago when I needed multiple versions of node to live on my system for testing: an 0.6.x version and an 0.8.x version. Now, not only can I install node with a double-click, but on my dev systems I can have multiple versions of node living happily together, switching between versions when I need to. Once installed:</p>
+<pre><code># Install the new version (at the time):
+$ nvm install 0.8.8
+# Switch over to the new version, preserving my previous install:
+$ nvm use 0.8.8
+# Smile at the lack of pain.</code></pre>
+<hr>
+<p><a href="https://npmjs.org/" target="_blank">npm</a> impressed me when I first used it, but in that, &quot;Well duh, of course node needs a way for the community to contribute.&quot; But until I read <a href="http://howtonode.org/introduction-to-npm" target="_blank">this article</a> by Isaac Schlueter, who seems to have become the equivalent of Guido van Rossum for node (which is a good thing), I really didn&#39;t get why npm was so cool. Despite my best intentions, I had to read the following to realize what npm was really for:</p>
+<blockquote>
+<p>npm is a development tool, first and foremost. People sometimes say &quot;Yeah, I haven&#39;t gotten time to check out that package manager stuff yet. Maybe I will when my code is more stable.&quot;</p>
+<p>That&#39;s like saying that you&#39;re going to start using source control when your code is done. It&#39;s just silly. Source control should make your process easier, and if it doesn&#39;t, then you&#39;re using a broken SCM. Same for package management. It should make it easier, and if it doesn&#39;t, then something is wrong.</p>
+<p>npm isn&#39;t &quot;for&quot; publishing. That&#39;s just something it can do. It&#39;s &quot;for&quot; playing. That&#39;s why I wrote it: to play with your code, without having to remember a dozen different ways to install your stuff, or having to get you all to structure your code the same way.</p>
+<p>It&#39;s supposed to make the process funner.</p>
+</blockquote>
+<p>npm wasn&#39;t just for others using my packages, it was for me to manage my own packages, whether or not I ever decided to publish them on npm.</p>
+<p>I had an <a href="http://cheezburger.com/2958491136" target="_blank">&quot;OMG IT SPINS!&quot;</a> moment when I wrote the following <a href="http://blog.nodejitsu.com/package-dependencies-done-right" target="_blank">package.json</a> file for a small weekend project:</p>
+<pre><code>{
+    &quot;name&quot;: &quot;simpleblog&quot;,
+    &quot;version&quot;: &quot;0.0.1&quot;,
+    &quot;description&quot;: &quot;A simple static blog.&quot;,
+    &quot;author&quot;: &quot;Jeremy Osborne &amp;lt;jeremywosborne@gmail.com&amp;gt;&quot;,
+    &quot;dependencies&quot;: {
+        &quot;cheerio&quot;: &quot;0.9.x&quot;,
+        &quot;colors&quot;: &quot;0.6.x&quot;,
+        &quot;fs-extra&quot;: &quot;0.2.x&quot;,
+        &quot;handlebars&quot;: &quot;1.0.x&quot;,
+        &quot;underscore&quot;: &quot;1.3.x&quot;
+    },
+    &quot;devDependencies&quot;: {
+    },
+    &quot;engine&quot;: &quot;node &gt;= 0.6.x&quot;
+}</code></pre>
+<p>And then, with a bit of trepidation like I might accidentally create a blackhole in the npm universe, typed in the following command:</p>
+<pre><code>$ npm install</code></pre>
+<p>&quot;OMG IT SPINS!&quot; Nothing blew up, I didn&#39;t accidentally publish my embarrassing code to the world, and I have my dependencies for my program correctly installed and require-able. I heart npm, the <strong>development tool</strong>. (I wish I had hearted npm years ago, but even us short yellow bus riders can catch up as x &rarr; &infin;.)</p>
+<hr>
+<p>Another module that I&#39;m excited about <small>(although I have yet yet to actually use for real)</small> is <strong><a href="http://gruntjs.com/" target="_blank">grunt</a></strong>. After listening to my friend James tell me over and over about it, and trying out the examples last week, I have a weapon against the insane world of using ant and maven for JavaScript projects. Really? I need Java to build my Web Projects? I thought we settled that in the nineties. No, just no. I still run into people regularly who, after I tell them I teach JavaScript classes, say, &quot;Oh I&#39;ve heard of Java. It&#39;s so [insert some reaction here].&quot; It&#39;s really, really nice to have a non-meta and non-other language build tool for JavaScript. Thank you grunt!</p>
+<hr>
+<p>I don&#39;t always use colors, but when I do, I&#39;m usually outputting log messages. Looking at the npm most depended upon list, I stumbled into <strong><a href="https://npmjs.org/package/colors" target="_blank">colors</a></strong>. Once again, another simple-is-beautiful library that makes adding colors to my log strings so easy and intuitive.</p>
+<pre><code>// Colors modifies the String.prototype. Don&#39;t use if
+// modifying prototypes hurts your sensibilities of
+// &quot;good&quot; JavaScript code.
+require(&quot;colors&quot;);
+// outputs green text
+console.log(&#39;hello&#39;.green);
+// outputs red underlined text
+console.log(&#39;i like cake and pies&#39;.underline.red)
+// inverts the color
+console.log(&#39;inverse the color&#39;.inverse);
+// rainbow (ignores spaces)
+console.log(&#39;OH MY GOD IT SPINS!&#39;.rainbow);</code></pre>
+<hr>
+<p>And the fun continued because all I had to do was search a bit and every &quot;the batteries are missing&quot; complaint I have had about node seems to have been addressed. Next up, <strong><a href="http://jprichardson.github.com/node-fs-extra/" target="_blank">fs-extra</a></strong>. Whenever I need to <code>mkdir -p some/directory/path</code> or <code>rm -rf /</code>, now I can without needing to roll my own code, or utilize disparate includes, or make system calls.</p>
+<hr>
+<p>This brings me to a fundamental thing that probably marks me as partially insane: there are idioms that I actually <em>like</em> from the browser world of JavaScript. Not the idioms directly from the HTML DOM, but mainly the idioms that have developed in spite of the browser DOM. For example: when I need to work with DOM object, I&#39;ve gotten used to CSS selector based. Or chainable method calls. I like the various heavy-duty and the micro-weight templating engines. These idioms, are wrapped around the browser DOM, which does not exist in the headless world of node, but let not headlessness stop these idioms from migrating server side.</p>
+<p>On the simpler side, I have used <strong><a href="https://npmjs.org/package/underscore" target="_blank">underscore</a></strong> since day one, but I love that I can include it as an npm module. (I also love that it&#39;s a prominent npm module!) Then there is <strong><a href="https://npmjs.org/package/handlebars" target="_blank">handlebars</a></strong>, which has become my favorite templating library. It shouldn&#39;t need any attachment to the DOM and should be easy to include in node, and sure enough it is. Other idioms, like jQuery-like DOM manipulation, I didn&#39;t think I&#39;d really find outside of a fake browser DOM (which the folks at <strong><a href="https://github.com/tmpvar/jsdom" target="_blank">jsdom</a></strong> have done a wonderful job implementing). And yet, even here, with a bit of searching, I found something easy to use, all packged up as <strong><a href="https://github.com/MatthewMueller/cheerio" target="_blank">cheerio</a></strong>. Look familiar?</p>
+<pre><code>var cheerio = require(&#39;cheerio&#39;);
+var $ = cheerio.load(&#39;&lt;h2 class=&quot;title&quot;&gt;Hello world&lt;/h2&gt;&#39;);
+
+$(&#39;h2.title&#39;).text(&#39;Hello there!&#39;);
+$(&#39;h2&#39;).addClass(&#39;welcome&#39;);
+
+$.html();
+//=&gt; &lt;h2 class=&quot;title welcome&quot;&gt;Hello there&lt;/h2&gt;;</code></pre>
+<hr>
+<p>As with all blog posts like this, you might not find the content that exciting to you, and it might not even answer any of your questions. But the real point of this article isn&#39;t about the content, but rather a simple fact: node is maturing as a programming environment. Still lots of bandaids and duct tape binding many things together, but it isn&#39;t difficult to also find some drill presses, backhoes, certified pre-owned BMWs, hammers, and sledgehammers too outfit your JavaScript server-side Swiss Army knife. Will coding in JavaScript ever make me as happy as coding in Python? It&#39;s close right now, and I&#39;m looking forward to where the node community goes from here.</p>
+                    </section>
+                </article>
+            </section>
+        </div>
+        
+<footer>
+    <hr>
+    <nav>
+        <a href="/pages/about.html">About</a> |
+        <a href="/pages/favwebresources.html">Links &amp; Stuff</a> |
+        <a href="/full_index.html">Index</a>
+    </nav>
+    <hr>
+    <small>&copy; 2010-2014 Jeremy Osborne</small>
+    <br>
+    <br>
+</footer>
+
+    </body>
+</html>

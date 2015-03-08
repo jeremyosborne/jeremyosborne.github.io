@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+                
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <meta name="author" content="Jeremy Osborne">
+        <link href="/css/style.css" rel="stylesheet">
+        <link href="/rss.xml" title="i like to talk" rel="alternate" type="application/rss+xml">
+        <title>pandoc recipes</title>
+            <script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-33545821-1']);
+_gaq.push(['_setDomainName', 'jeremyosborne.com']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+        </script>
+</head>
+    <body>
+                <noscript>
+            <div class="warning">
+This blog works better with JavaScript enabled.
+            </div>
+        </noscript>
+
+                
+        <header>
+            <h1><a href="/">i like to talk</a></h1>
+        </header>
+
+        <div id="main-content">
+            <article class="page">
+                <header>
+                    <h1>pandoc recipes</h1>
+                    <h2>by Jeremy Osborne, 2014.12.27 12:53:00</h2>
+                </header>
+                <section>
+                    <pre><code># A couple of recipes.
+# html
+# --output=FILE             output to file (file extension determines format)
+# --write=html5             specify a specific output format to write to
+# --standalone              standalone
+# --smart                   smart (dafuq does that mean?)
+# --highlight-style=STYLE   pygments (default), kate, monochrome, espresso, zenburn, haddock, tango
+pandoc README.md --output=README.html --standalone --smart --write=html5 --highlight-style=tango
+
+# pdf (long code blocks don&#39;t wrap)
+pandoc README.md -o README.pdf --latex-engine xelatex --highlight-style tango
+
+# odt (long code blocks don&#39;t wrap)
+pandoc README.md -o README.odt --latex-engine xelatex --highlight-style tango</code></pre>
+                </section>
+            </article>
+        </div>
+        
+<footer>
+    <hr>
+    <nav>
+        <a href="/pages/about.html">About</a> |
+        <a href="/pages/favwebresources.html">Links &amp; Stuff</a> |
+        <a href="/full_index.html">Index</a>
+    </nav>
+    <hr>
+    <small>&copy; 2010-2014 Jeremy Osborne</small>
+    <br>
+    <br>
+</footer>
+
+    </body>
+</html>

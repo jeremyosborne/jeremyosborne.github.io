@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+    <head>
+                
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <meta name="author" content="Jeremy Osborne">
+        <link href="/css/style.css" rel="stylesheet">
+        <link href="/rss.xml" title="i like to talk" rel="alternate" type="application/rss+xml">
+        <title>Procedural World Generation</title>
+            <script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-33545821-1']);
+_gaq.push(['_setDomainName', 'jeremyosborne.com']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+        </script>
+</head>
+    <body>
+                <noscript>
+            <div class="warning">
+This blog works better with JavaScript enabled.
+            </div>
+        </noscript>
+
+                
+        <header>
+            <h1><a href="/">i like to talk</a></h1>
+        </header>
+
+        <div id="main-content">
+            <section class="post-single">
+                <nav class="inter-post-nav">
+                    
+                    <a href="/posts/organic_coding_conclusion.html" class="previous">Organic coding experiment conclusion</a>
+                    
+                    
+                    <a href="/posts/hearthstone_beta.html" class="next">Hearthstone: An actual free-to-play game (plus my Paladin Deck Build)</a>
+                    
+                </nav>
+                <article class="post">
+                    <header>
+                        <h1>Procedural World Generation</h1>
+                        <h2>by Jeremy Osborne, 2014.01.17 01:45:42</h2>
+                    </header>
+                    <section>
+                        <h2 id="summary">Summary</h2>
+<p>I have been working on making a video game, and wanted an excuse to do some <a href="http://en.wikipedia.org/wiki/Procedural_generation" target="_blank">procedural world generation</a>. Procedural generation of some kind is a part of a lot of the <a href="http://www.nethack.org/" target="_blank">games</a> <a href="http://www.unrealworld.fi/" target="_blank">that</a> <a href="http://te4.org/" target="_blank">I</a> <a href="http://en.cataclysmdda.com/" target="_blank">like</a> <a href="http://doom.chaosforge.org/" target="_blank">to</a> <a href="http://crawl.develz.org/wordpress/" target="_blank">play</a>, and it seems to be what the cool kids are doing nowadays. This is a collection of links on procedural programming, and how I&#39;m working through my ignorance to better understand it.</p>
+<h2 id="details">Details</h2>
+<p>I&#39;m never ignorant while I&#39;m still ignorant. That&#39;s probably why, absently mindedly, I spent ~2 hours searching the internet for &quot;procedural world generation&quot; and not finding the tools or the code I needed. I was asking the wrong question, and it dawned on me I was ignorant. Good to get that out of the way early.</p>
+<p>I asked the almighty Google slightly different questions, like &quot;perlin noise&quot; and &quot;procedural world generation with noise functions&quot; and &quot;voronoi diagrams.&quot; Refining my search I ran into some links that were immensely helpful for getting my going in the right direction. While all of the links below were useful for me, the order of the links represent the chronological usefulness of the articles in descending order.</p>
+<ul>
+<li><a href="http://freespace.virgin.net/hugo.elias/models/m_perlin.htm" target="_blank">Perlin Noise</a>: This site makes me love the internet. This would have been enough, and I wish I would have found this site first. Includes easy to understand pseudocode.</li>
+<li><a href="http://libnoise.sourceforge.net/tutorials/tutorial3.html" target="_blank">libnoise Tutorial #3</a>: Down at the bottom of this page are two images, side by side, that helped the &quot;why&quot; of procedural world generation click for me.</li>
+<li><a href="http://www.noisemachine.com/talk1/" target="_blank">Ken Perlin&#39;s &quot;Making Noise&quot; talk</a>: After working with code, I found this talk really useful for putting more of the &quot;why&quot; pieces together.</li>
+<li><a href="http://mrl.nyu.edu/~perlin/doc/oscar.html" target="_blank">Ken Perlin&#39;s Noise and Turbulence</a>: History is good, and the code is great should you wish to take and tweak a C implementation.</li>
+<li><a href="http://www-cs-students.stanford.edu/~amitp/game-programming/polygon-map-generation/" target="_blank">Polygonal Map Generation for Games</a>: I found this article fascinating and am looking to find a way to integrate Voronoi Diagrams into something that I work on. I haven&#39;t touched this technique yet, and I include this here as a &quot;tip of the iceberg&quot; article about what else lies out there beyond the well known techniques discussed above.</li>
+</ul>
+<p>For those of you that just want code (I know you exist, I&#39;m one of them), here&#39;s my <a href="https://github.com/jeremyosborne/public/tree/master/python/noise" target="_blank">very first, very simple experiment in Python with Pygame</a>. It&#39;s okay to laugh at my code, you won&#39;t hurt my feelings, but if you have some good ideas, feel free to comment on github. I&#39;ll try to remember to update this link if I move/change the location of the code.</p>
+<p>If you read the articles above and mess around with code examples you can find on the internet, you likely don&#39;t need to read anything that I&#39;m going to write about. I consider myself a n00b in this area. However, if reading someone else&#39;s learning process helps you, then read on.</p>
+<h3 id="wrong-assumption-1-i-m-not-generating-a-world-i-m-generating-numbers">Wrong Assumption #1: I&#39;m not generating a world, I&#39;m generating numbers</h3>
+<p>This one should have been obvious, and it was, but it also wasn&#39;t. Thinking of my world as a grid is obvious. Generating random terrain for my world was obvious. Getting the numbers to act like a world was not. I quickly learned the error of the following Python code:</p>
+<pre><code class="lang-python">from random import random
+from pprint import pprint
+
+# Generate a grid of &quot;terrain&quot;
+coords = [[random() for i in range(2)] for i in range(2)]
+# Fail to make sense of the grid.
+pprint(coords)
+
+# Output from pprint (you will get different numbers).
+# [[0.35353647466830207, 0.03712863075423578],
+# [0.4205671728924276, 0.8831232619764249]]</code></pre>
+<p>My clue phone started to ring:</p>
+<ul>
+<li>I needed something that was easily reproducible and tied to a specific coordinate system (or coordinate at a specific time, or other dimension).</li>
+<li>I wanted something that took an input on each call that acted as the seed.</li>
+<li>The most obvious terrain that I would be creating represented elevation or a <a href="http://en.wikipedia.org/wiki/Heightmap" target="_blank">Heightmap</a>, and that would require giving meaning to the numbers within the range of values produced.</li>
+<li>I needed some way to get those numbers to not be so drastically different.</li>
+</ul>
+<h3 id="wrong-assumption-2-if-i-m-generating-terrain-i-need-numbers-to-be-related">Wrong Assumption #2: If I&#39;m generating terrain, I need numbers to be related</h3>
+<p>Last bullet point above, biggest problem to tackle. Using the random number generators I always used, in the way I used them, I might end up with a water grid next to a sheer, snowy cliff, followed by desert, followed by another cliff, all within a range of 4 pixels.</p>
+<p>This is where the articles that I read (and continue to find and read) helped make sense of the situation. The &quot;noise&quot; was the random number, but it was only a piece of the procedure. The way the number was processed, and the way in which the number was related to nearby noise coordinates was not some static, set in stone, one way to do things process. There was no &quot;is right noise&quot; or &quot;is wrong noise.&quot;</p>
+<p>I know for people reading this, if this is the world that you swim in, this was probably a &quot;no duh.&quot; For me it was a relief because it took the mystery out of the &quot;how&quot; part of the process and just left the &quot;what to do with the process&quot; and &quot;why do this.&quot; As the days pass (I delved into this 2 days ago before writing this up) this feels as cool as when I figured out &quot;how/why functional programming&quot; or &quot;how/why async/multiprocess programming.&quot; Just like these other tools, it&#39;s merely one tool out of many and this tool alone will not solve all of my &quot;world generation&quot; problems, but it&#39;s a great start.</p>
+<p>I love programming!</p>
+<h3 id="time-to-code">Time to code</h3>
+<p>Okay, enough elation. Here&#39;s a few thoughts that I&#39;ve had after playing around with some code:</p>
+<h5 id="different-number-generators-for-different-jobs">Different number generators for different jobs</h5>
+<p>I wonder, and have not yet tested:</p>
+<ul>
+<li>What if I wanted rolling hills, would a sine or cosine wave influenced generator be useful in certain areas of a game?</li>
+<li>Would a random number generator that had a small period of randomness before repeating itself be useful for creating a procedural texture paintbrush?</li>
+<li>Can I get away with using the same number generator for 1d, 2d, or 3d noise or do I need something that is slightly different or different coordinate systems?</li>
+</ul>
+<h5 id="different-processing-for-different-situations">Different processing for different situations</h5>
+<p>Relating each individual number to its neighbor played a huge role in the world that resulted on my screen. Some of the links above do a good job showing how unfiltered noise works for generating believable textures: unfiltered noise is not usually useful.</p>
+<p>With a bit of tweaking, I am just beginning to see the potential of using this to create the baseline terrain for a game world.</p>
+<ul>
+<li>I can lower every number creating more water.</li>
+<li>I can force each number to be more influenced by its neighbors and create a world that ends up flatter and closer to sea level.</li>
+</ul>
+<p>For every believable dungeon/world/town/planet that I&#39;ve seen there is likely a patient programmer working on and tweaking how the world generation works for their specific needs.</p>
+<h5 id="procedural-generation-comes-at-a-cost-cpu-time">Procedural generation comes at a cost: CPU time</h5>
+<p>My first attempt at generating a simple world using Python and Pygame with cut-and-paste code was for a 600x600 pixel grid. Granted the code wasn&#39;t optimized very well, I wasn&#39;t expecting to see the beach ball of death on my Mac. Good to see this problem early, as solutions seem pretty straightforward.</p>
+<ul>
+<li>Generate large chunks of the world and remember them, writing them to disk when needed.</li>
+<li>Generate small chunks of the world in the background, and on an as needed basis, only saving the deltas to disk.</li>
+<li>Run the world generation in a background process, and request chunks of the world from the main process when needed.</li>
+</ul>
+<p>Right now I like option 3, but I&#39;m too new at this to know what&#39;s really the best solution for a game. My gut tells me they&#39;re all useful in certain situations.</p>
+<h5 id="one-routine-will-not-rule-them-all">One routine will not rule them all</h5>
+<p>One of the articles I read made a good point about a single pass world generation: heightmaps are great for building up a world, but what about rivers that should be drawn flowing down hills?</p>
+<p>Or one routine might be good for fires, and another good for clouds.</p>
+<p>Perhaps a completely different procedure would be needed to generate caves with stalactites staring down at the stalagmites.</p>
+<p>Knowing what I need in my world will determine the sort of routines, and post-processing that I&#39;ll need to invent.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>It&#39;s always nice to have an excuse to learn a new programming technique. Projects, simple they may be, give me a reason to solve the bugs I will end up writing as I learn. And writing a game is a great excuse to learn procedural programming.</p>
+                    </section>
+                </article>
+            </section>
+        </div>
+        
+<footer>
+    <hr>
+    <nav>
+        <a href="/pages/about.html">About</a> |
+        <a href="/pages/favwebresources.html">Links &amp; Stuff</a> |
+        <a href="/full_index.html">Index</a>
+    </nav>
+    <hr>
+    <small>&copy; 2010-2014 Jeremy Osborne</small>
+    <br>
+    <br>
+</footer>
+
+    </body>
+</html>

@@ -1,0 +1,5 @@
+published
+.server-pid
+.DS_Store
+node_modules
+stage_for_hosting.sh
