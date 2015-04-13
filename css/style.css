@@ -406,11 +406,6 @@ blockquote {
   border-left: 1px solid #5a4411;
   color: #5a4411;
 }
-footer {
-  text-align: center;
-  color: #8a8987;
-  clear: both;
-}
 noscript .warning {
   text-align: center;
   color: #fff;
@@ -435,17 +430,20 @@ pre > code {
   padding: 0.2em;
   white-space: pre;
 }
-/* Page banner. */
-body > header > h1 {
+#main-header {
   text-align: right;
-  padding: 1em;
-  box-shadow: 0 0.05em 0.1em rgba(138,137,135,0.5);
-  margin-bottom: 1em;
+  padding: 0.3em;
 }
-/* Page container. */
 #main-content {
   max-width: 640px;
+  min-height: 70%;
   margin: auto;
+  padding: 2em;
+}
+#main-footer {
+  text-align: center;
+  color: #8a8987;
+  clear: both;
   padding: 1em;
 }
 /* intrapost links. */
