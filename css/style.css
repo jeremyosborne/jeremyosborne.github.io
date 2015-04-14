@@ -1,4 +1,4 @@
-/* normalize.css v2.1.3 | MIT License | git.io/normalize */
+/*! normalize.css v2.1.3 | MIT License | git.io/normalize */
 /* ==========================================================================
    HTML5 display definitions
    ========================================================================== */
@@ -53,11 +53,11 @@ template {
  */
 html {
   font-family: sans-serif;
-/* 1 */
+  /* 1 */
   -ms-text-size-adjust: 100%;
-/* 2 */
+  /* 2 */
   -webkit-text-size-adjust: 100%;
-/* 2 */
+  /* 2 */
 }
 /**
  * Remove default margin.
@@ -217,9 +217,9 @@ fieldset {
  */
 legend {
   border: 0;
-/* 1 */
+  /* 1 */
   padding: 0;
-/* 2 */
+  /* 2 */
 }
 /**
  * 1. Correct font family not being inherited in all browsers.
@@ -231,11 +231,11 @@ input,
 select,
 textarea {
   font-family: inherit;
-/* 1 */
+  /* 1 */
   font-size: 100%;
-/* 2 */
+  /* 2 */
   margin: 0;
-/* 3 */
+  /* 3 */
 }
 /**
  * Address Firefox 4+ setting `line-height` on `input` using `!important` in
@@ -264,13 +264,12 @@ select {
  */
 button,
 html input[type="button"],
-/* 1 */,
 input[type="reset"],
 input[type="submit"] {
   -webkit-appearance: button;
-/* 2 */
+  /* 2 */
   cursor: pointer;
-/* 3 */
+  /* 3 */
 }
 /**
  * Re-set default cursor for disabled elements.
@@ -286,9 +285,9 @@ html input[disabled] {
 input[type="checkbox"],
 input[type="radio"] {
   box-sizing: border-box;
-/* 1 */
+  /* 1 */
   padding: 0;
-/* 2 */
+  /* 2 */
 }
 /**
  * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
@@ -297,10 +296,10 @@ input[type="radio"] {
  */
 input[type="search"] {
   -webkit-appearance: textfield;
-/* 1 */
+  /* 1 */
   -moz-box-sizing: content-box;
   -webkit-box-sizing: content-box;
-/* 2 */
+  /* 2 */
   box-sizing: content-box;
 }
 /**
@@ -325,9 +324,9 @@ input::-moz-focus-inner {
  */
 textarea {
   overflow: auto;
-/* 1 */
+  /* 1 */
   vertical-align: top;
-/* 2 */
+  /* 2 */
 }
 /* ==========================================================================
    Tables
@@ -340,7 +339,6 @@ table {
   border-spacing: 0;
 }
 
-/***************************************************************** Defaults */
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -413,22 +411,29 @@ noscript .warning {
   background-color: #a66919;
   padding: 1em 0;
 }
-code,
-.code {
+pre {
+  padding: 0.2em;
+  /* pre code can overrun x-boundaries quite easily. */
+  overflow-x: scroll;
+}
+code {
   color: #00f000;
   background-color: #000;
 }
-pre,
-pre.code {
-  padding: 0.2em;
-/* pre code can overrun x-boundaries quite easily. */
-  overflow-x: scroll;
-}
+/* Markdown code blocks are converted to this structure. */
 pre > code {
   min-width: 100%;
   display: inline-block;
   padding: 0.2em;
   white-space: pre;
+}
+ul {
+  list-style: none;
+}
+li:before {
+  padding-right: 0.7em;
+  content: "\002022";
+  font-size: 0.7em;
 }
 #main-header {
   text-align: right;
@@ -446,57 +451,39 @@ pre > code {
   clear: both;
   padding: 1em;
 }
-/* intrapost links. */
-.post-single .inter-post-nav {
+.subheading {
+  color: #8a8987;
+  font-weight: normal;
+  font-size: 0.8em;
+  line-height: 1.2;
+  margin: 0 0 0.2em 0;
+}
+/* Between blog articles. */
+.inter-post-nav {
   overflow: auto;
   margin-bottom: 2em;
   font-size: 0.8em;
 }
-.post-single .inter-post-nav .next {
-  display: inline-block;
+.inter-post-nav .next {
   float: right;
   text-align: right;
-/* Make the click area a bit larger */
+  /* Make the click area a bit larger */
   width: 30%;
   padding: 0.5em 0;
 }
-.post-single .inter-post-nav .next:after {
-/* Unicode: Black Right-Pointing Pointer */
+.inter-post-nav .next:after {
+  /* Unicode: Black Right-Pointing Pointer */
   content: "\25BA";
   margin-left: 0.3em;
 }
-.post-single .inter-post-nav .previous {
-  display: inline-block;
+.inter-post-nav .previous {
   float: left;
-/* Make the click area a bit larger */
+  /* Make the click area a bit larger */
   width: 30%;
   padding: 0.5em 0;
 }
-.post-single .inter-post-nav .previous:before {
-/* Unicode: Black Left-Pointing Pointer */
+.inter-post-nav .previous:before {
+  /* Unicode: Black Left-Pointing Pointer */
   content: "\25C4";
   margin-right: 0.3em;
-}
-/* post == the container of a traditional blog post. */
-.post > header > h2 {
-  color: #8a8987;
-  font-weight: normal;
-  font-size: 0.8em;
-  line-height: 1.2;
-  margin: 0 0 0.2em 0;
-}
-.post > footer {
-  text-align: right;
-}
-/*
- * page == the container of a static like page, not included as syndicated,
- * published content in the blog.
- * pages are assumed to take up the entire page.
- */
-.page > header > h2 {
-  color: #8a8987;
-  font-weight: normal;
-  font-size: 0.8em;
-  line-height: 1.2;
-  margin: 0 0 0.2em 0;
 }
