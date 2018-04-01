@@ -23,6 +23,8 @@ url: "https://jereyosborne.com" # the base hostname & protocol for your site, e.
 github_username: jeremyosborne
 linkedin_username: josborne
 
+google_analytics: "UA-33545821-1"
+
 # Build settings
 markdown: kramdown
 theme: minima
