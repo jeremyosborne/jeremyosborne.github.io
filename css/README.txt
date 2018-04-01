@@ -1,1 +1,0 @@
-CSS will end up in this directory. Keep this directory here.
