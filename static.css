@@ -1,0 +1,82 @@
+/* 
+ * Statically linked CSS file used to style the plain HTML contents. 
+ * This file must be hardcoded as a link into the `src/html/index.html` template.
+ */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font:
+        400 16px/1.5 -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif,
+        "Apple Color Emoji",
+        "Segoe UI Emoji",
+        "Segoe UI Symbol";
+}
+
+a {
+    color: #2a7ae2;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a:visited,
+a:active {
+    color: #1756a9;
+}
+
+ul,
+ol {
+    margin: 0;
+    padding: 0;
+}
+li {
+    display: list-item;
+    list-style: none;
+    margin-bottom: 0.25rem;
+}
+
+.page-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+@media (max-width: 800px) {
+    .page-content {
+        max-width: auto;
+        padding: 2rem 0.5rem;
+    }
+}
+
+/* Begin social-links.html */
+.social-links a {
+    display: inline-block;
+    padding: 0.3rem;
+}
+/* End social-links.html */
+
+/* Begin site-header.html */
+.site-header {
+    align-content: center;
+    border-top: 5px solid #424242;
+    border-bottom: 1px solid #e8e8e8;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.8rem 3rem;
+}
+.site-tile {
+    font-size: 1.6rem;
+}
+.site-title,
+.site-title:visited {
+    color: #424242;
+}
+/* End site-header.html styles. */
