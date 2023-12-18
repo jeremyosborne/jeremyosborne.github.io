@@ -1,0 +1,128 @@
+.I1EvIKKOrX08UxLDX0Sp {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    /* This is achievement specific, not a very generalized drawer. */
+    min-height: 9rem;
+    position: relative;
+    transition: width 0.25s ease-out;
+    width: 0;
+}
+
+.I1EvIKKOrX08UxLDX0Sp.gCmCelLhaMbCLyApJO60 {
+    width: 100%;
+}
+
+.bJhKdRqks4PpsIqLK39a {
+    display: flex;
+    overflow-x: scroll;
+    transition: width 0.25s ease-out;
+    width: 0;
+}
+
+.bJhKdRqks4PpsIqLK39a.gCmCelLhaMbCLyApJO60 {
+    width: 100%;
+}
+
+/* When !open, button is edged into view on the left side from the closed drawer. */
+.YZc313jXXFovK4QOiov1 {
+    align-items: center;
+    background-color: rgb(33, 33, 33);
+    border-radius: 0 100% 100% 0;
+    color: rgb(255, 255, 255);
+    display: flex;
+    height: 4.6rem;
+    justify-content: center;
+    right: -2.83rem; /* Visible relative to width of button. */
+    position: absolute;
+    width: 2.83rem;
+}
+.YZc313jXXFovK4QOiov1.gCmCelLhaMbCLyApJO60 {
+    border-radius: 100% 0 0 100%;
+    position: static;
+}
+
+.R2gHa5tsUVgIt2H1U9Xz {
+    /** This location is just a guess. Restyle if needed. */
+    position: fixed;
+    right: 0;
+    top: 0;
+    padding: 1rem;
+}
+
+.OJU9ogGBc7P81nxxdRRZ {
+    align-items: center;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: space-around;
+    padding: 1em;
+
+    position: fixed;
+    top: 1em;
+    left: 3em;
+    right: 3em;
+}
+
+/* Styling for specific notification types. */
+.OJU9ogGBc7P81nxxdRRZ.vLctuaz1JaYkbCNCwhVi {
+    background-color: #e6d963;
+    color: black;
+}
+.OJU9ogGBc7P81nxxdRRZ.ZCSbzhcUgnW6kGfb4d7T {
+    background-color: #c51162;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .OJU9ogGBc7P81nxxdRRZ {
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+}
+
+.txyNeRksmaOdq3okPsXq {
+    width: 80%;
+}
+
+.AnzCZUmLJAV8ygEVMlgE {
+    /* Button reset */
+    border: none;
+    margin: 0;
+    /* padding: 0; */
+    width: auto;
+    overflow: visible;
+    background: transparent;
+    /* inherit font & color from ancestor */
+    color: inherit;
+    font: inherit;
+    /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+    line-height: normal;
+    /* 
+     * font-smooth is non-standard. Autoprefixer doesn't help with this because it's
+     * non-standard, so if we want it, we add our own prefixes.
+     */
+    font-smooth: inherit;
+    -webkit-font-smoothing: inherit;
+    -moz-osx-font-smoothing: inherit;
+    /* Corrects inability to style clickable `input` types in iOS */
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    /* end Button reset */
+
+    color: #575757;
+    display: inline-block;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 0.8em;
+    padding: 0.3em;
+    text-transform: uppercase;
+    max-width: 20%;
+}
+
+.ZCSbzhcUgnW6kGfb4d7T .AnzCZUmLJAV8ygEVMlgE {
+    color: white;
+}
+
