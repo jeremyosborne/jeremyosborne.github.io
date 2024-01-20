@@ -30,11 +30,168 @@
         <meta property="og:site_name" content="jeremy osborne" />
         <link rel="stylesheet" href="normalize.min.css" />
         <link rel="stylesheet" href="static.css" />
+        <style>
+            html,
+            body {
+                height: 100%;
+            }
+            .hidden {
+                display: none !important;
+            }
+        </style>
+        <!-- 
+            Code is built and deployed in another repository. We link to it and
+            include the html needed to load up the game, providing a diversion on the 404.
+
+            @see: https://github.com/jeremyosborne/fourohfourborenomore
+
+            and
+
+            @see static/assets/images
+        -->
+        <script
+            defer="defer"
+            src="https://jeremyosborne.com/fourohfourborenomore/vendors.js"
+        ></script>
+        <script
+            defer="defer"
+            src="https://jeremyosborne.com/fourohfourborenomore/app.js"
+        ></script>
     </head>
     <body>
         <div class="site-header" role="banner">
             <a class="site-title" href="/" rel="author">jeremy osborne</a>
         </div>
         <h1 style="text-align: center">Page not found</h1>
+
+        <!-- 
+            Fake BIOS loading screen (begin) 
+
+            Plain HTML + CSS + JS loading screen.
+
+            Provides human visual appeasement (via spinning cursor) that 
+            something appears to be happening on the page, while the user 
+            might be waiting on a slow connection.
+
+            API:
+
+            - Component is designed to take up the real estate of the containing element,
+              which is presumed to be the full screen of the browser.
+            - This code should just work when added to an HTML page.
+            - When outside application is done loading, add the `loaded` class to the
+              `#pk-bios-loading` component.
+            - Visual portion of component hides itself on the addition of `loaded` and
+              then cleans up on next cycle of setTimeout queued function.
+        -->
+        <style id="pk-bios-loading-style">
+            #pk-bios-loading {
+                /* height: 100%; */
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                /* background-color: black; */
+                box-sizing: border-box;
+            }
+            #pk-bios-loading.loaded {
+                display: none;
+            }
+            #pk-bios-loading-screen {
+                height: 100%;
+                min-height: 0;
+                max-height: 480px;
+                width: 100%;
+                min-width: 0;
+                max-width: 640px;
+                font-family:
+                    Courier New,
+                    monospace;
+                background-color: #0000aa;
+                color: #ffffff;
+                padding: 20px;
+                overflow-y: auto;
+                white-space: pre;
+                box-sizing: border-box;
+            }
+            #pk-bios-loading-screen .pk-bios-p {
+                margin: 0;
+                font-size: 14px;
+                line-height: 1.5;
+                box-sizing: border-box;
+            }
+        </style>
+        <div id="pk-bios-loading">
+            <div id="pk-bios-loading-screen">
+                <p class="pk-bios-p">Plague King BIOS Loaded</p>
+                <p class="pk-bios-p">
+                    Summoning 200s from the interwebs...<span
+                        id="pk-bios-loading-cursor"
+                        >|</span
+                    >
+                </p>
+            </div>
+        </div>
+        <script id="pk-bios-loading-script">
+            (function () {
+                // 0th index should be the next cursor displayed in the
+                // animation compared to the intial cursor in the span element.
+                const cursors = ["/", "-", "\\", "|"];
+                let cursorIndex = 0;
+                const cursorIndexRepeat = cursors.length;
+                const loadingCursor = document.getElementById(
+                    "pk-bios-loading-cursor",
+                );
+                const loadingContainer =
+                    document.getElementById("pk-bios-loading");
+                const animateOrCleanup = () => {
+                    loadingCursor.innerHTML =
+                        cursors[cursorIndex % cursorIndexRepeat];
+                    cursorIndex += 1;
+                    // Depends on external code "turning off" this loading screen by this method.
+                    if (!loadingContainer.classList.contains("loaded")) {
+                        setTimeout(animateOrCleanup, 100);
+                    } else {
+                        // Clean up after ourselves.
+                        loadingContainer.parentNode.removeChild(
+                            loadingContainer,
+                        );
+                        const loadingStyle = document.getElementById(
+                            "pk-bios-loading-style",
+                        );
+                        loadingStyle.parentNode.removeChild(loadingStyle);
+                        const loadingScript = document.getElementById(
+                            "pk-bios-loading-script",
+                        );
+                        loadingScript.parentNode.removeChild(loadingScript);
+                    }
+                };
+                setTimeout(animateOrCleanup, 100);
+            })();
+        </script>
+        <!-- Fake BIOS loading screen (end) -->
+
+        <style>
+            #game-positioner {
+                height: 100%;
+                width: 100%;
+
+                display: flex;
+                /* align-items: center; */
+                justify-content: center;
+                box-sizing: border-box;
+
+                /* background: black; */
+            }
+            #game-container {
+                box-sizing: border-box;
+                width: 100%;
+                max-width: 800px;
+                height: 300px;
+                max-height: 300px;
+            }
+        </style>
+        <div id="game-positioner">
+            <div id="game-container" class="hidden"></div>
+        </div>
     </body>
 </html>

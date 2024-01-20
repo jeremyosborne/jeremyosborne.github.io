@@ -1,0 +1,1 @@
+Assets included for the 404 game page.
